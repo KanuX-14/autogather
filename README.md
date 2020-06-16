@@ -2,13 +2,13 @@
 Prize button/box auto-clicker. (Initially made for Twitch's prize box)
 
 ## INFORMATION ##
-
+```
 -h: Prints the help section option.
 -v: Prints the version of the script.
 -l: The minimum lenght of seconds.
 -L: The maximum lenght of seconds.
 -M: The current minutes to get a point box.
-
+```
 ## USAGE ##
 
 It's important to ensure that it is needed the use of the minutes for each interval.
