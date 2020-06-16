@@ -1,0 +1,100 @@
+#!/bin/bash
+
+clear
+sec=55
+lenghtMin=0
+lenghtMax=0
+defaultMin=0
+points=0
+randomSecBool=0
+terminalWindow=$(xdotool getactivewindow)
+function helpF(){
+	echo "
+  [INFORMATION]
+
+    -h: Prints this option.
+    -v: Prints the version of the script.
+    -l: The minimum lenght of seconds.
+    -L: The maximum lenght of seconds.
+    -M: The current minutes to get a point box.
+
+  [USAGE]
+
+    It's important ensure that it is needed the use of the minutes for each interval.
+"
+}
+function versionF(){
+	echo "  autogather v1.0 - KanuX-14 | 06/16/2020 ~ 12:11 PM"
+}
+while getopts ":hvl:L:M:" opt; do
+	case $opt in
+		h) helpF
+		;;
+		v) versionF
+		;;
+		l) lenghtMin="$OPTARG"
+		;;
+		L) lenghtMax="$OPTARG"
+		;;
+		M) defaultMin="$OPTARG"
+		;;
+		*) echo "Wrong input!"
+	esac
+done
+min=$(($defaultMin-1))
+if [ $defaultMin -gt 0 ]; then
+	permission="true"
+else
+	permission="false"
+fi
+if [ $permission == "true" ]; then
+	echo "Click in your web browser's prize button/box."
+	twitchWindow=$(xdotool selectwindow)
+	mouseX=$(xdotool getmouselocation | awk -F: '{print $2}' | awk '{print $1}')
+	mouseY=$(xdotool getmouselocation | awk -F: '{print $3}' | awk '{print $1}')
+else
+	echo ""
+fi
+while $permission; do
+	clear
+	sec=$(($sec+1))
+	if [ $randomSecBool -eq 0 ]; then
+		randomSec=$(shuf -i $lenghtMin-$lenghtMax -n1)
+		randomSecBool=1
+	fi
+	if [ $sec -eq 60 ]; then
+		sec=0
+		min=$(($min+1))
+	fi
+	if [ $min -eq $defaultMin ]; then
+		if [ $sec -eq $randomSec ]; then
+			points=$(($points+1))
+			xdotool windowactivate $twitchWindow
+			clear
+			echo -e "[!] \e[1;33mPoints claimed\e[0m"
+			echo -e "[+] \e[1;32mCurrent Points: \e[1;36m$points\e[0m"
+			xdotool mousemove $mouseX $mouseY click 1
+			sleep 0.5
+			xdotool windowactivate $terminalWindow
+			echo -e "[!] \e[0;31mCounter will restart...\e[0m"
+			sleep 5
+			sec=0
+			min=0
+			randomSecBool=0
+			clear
+		fi
+	fi
+	if [ $sec -lt 10 ]; then
+		seconds="0$sec"
+	else
+		seconds="$sec"
+	fi
+	if [ $min -lt 10 ]; then
+		minutes="0$min"
+	else
+		minutes="$min"
+	fi
+	echo "[!] Current time: [$minutes:$seconds]"
+	echo -e "[+] \e[1;32mCurrent Points: \e[1;36m$points\e[0m"
+	sleep 1
+done
