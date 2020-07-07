@@ -1,19 +1,9 @@
 # autogather
 Prize button/box auto-clicker. (Initially made for Twitch's prize box)
 
-## INFORMATION ##
+## Information ##
 
 For the moment, it's stuck with one RGB colour set. It's a testing script until 07/12/2020.
-
-## USAGE ##
-
-At the moment, just run the script and let it click by itself:
-```
-python autogather.py
-```
-(Use python3 if you have support for Python 3.x)
-
-This script, also, need to be runned as root!
 
 ## Installation ##
 
@@ -25,8 +15,18 @@ pip install pynput PyAutoGUI PyScreeze keyboard mouse
 ```
 (Use pip3 if you have support for Python 3.x)
 
+## Usage ##
+
+At the moment, just run the script and let it click by itself:
+```
+python autogather.py
+```
+(Use python3 if you have support for Python 3.x)
+
+This script, also, need to be runned as root!
+
 ## References ##
 
 Feel free to modify my script / share it.
 
-If you want to learn more, you can see the documentation for [Pyntput](https://pynput.readthedocs.io/en/latest/), [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/), [PyScreeze](https://github.com/asweigart/pyscreeze), [keyboard](https://github.com/boppreh/keyboard), and [mouse](https://github.com/boppreh/mouse).
+If you want to learn more, you can see the documentation for [Pyntput](https://pynput.readthedocs.io/en/latest/), [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/), [PyScreeze](https://github.com/asweigart/pyscreeze), [keyboard](https://github.com/boppreh/keyboard), or [mouse](https://github.com/boppreh/mouse).
